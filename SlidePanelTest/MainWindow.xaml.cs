@@ -1,46 +1,36 @@
-﻿namespace SlidePanelTest
-{
-    using System;
-    using System.ComponentModel;
-    using System.Globalization;
-    using System.Windows;
-    using System.Windows.Controls;
+﻿using System;
+using System.ComponentModel;
+using System.Windows;
+using System.Windows.Controls;
 
-    /// <summary>
-    /// The main window.
-    /// </summary>
+namespace SlidePanelTest
+{
     public partial class MainWindow : INotifyPropertyChanged
     {
         private int _counterValue;
 
         public MainWindow()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public int Counter
         {
-            get
-            {
-                return _counterValue;
-            }
+            get => _counterValue;
 
             set
             {
                 _counterValue = value;
-                OnPropertyChanged("Counter");
+                OnPropertyChanged(nameof(Counter));
             }
         }
 
         private void OnPropertyChanged(string propertyName)
         {
-            var handler = this.PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(propertyName));
-            }
+            var handler = PropertyChanged;
+            handler?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
         private void Button_OnClick(object sender, RoutedEventArgs e)

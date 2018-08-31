@@ -1,11 +1,11 @@
+using System;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
+
 namespace SlidePanelTest.Converters
 {
-    using System;
-    using System.Globalization;
-    using System.Windows;
-    using System.Windows.Data;
-    using System.Windows.Markup;
-
     /// <summary>
     /// The double to left margin converter.
     /// </summary>

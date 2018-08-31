@@ -1,22 +1,22 @@
-﻿namespace SlidePanelTest.EasingFunctions
-{
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows;
-    using System.Windows.Media.Animation;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
+using System.Windows.Media.Animation;
 
+namespace SlidePanelTest.EasingFunctions
+{
     public class BezierEase : EasingFunctionBase
     {
         private readonly ICollection<Point> _controlPoints = new List<Point>
-            {
-                    new Point(0.00,  0.00),
-                    new Point(0.01,  0.00),
-                    new Point(0.40,  0.00),
-                    new Point(0.70,  0.00),
-                    new Point(0.85,  1.00),
-                    new Point(0.90,  1.00),
-                    new Point(1.00,  1.00)
-            };
+        {
+            new Point(0.00, 0.00),
+            new Point(0.01, 0.00),
+            new Point(0.40, 0.00),
+            new Point(0.70, 0.00),
+            new Point(0.85, 1.00),
+            new Point(0.90, 1.00),
+            new Point(1.00, 1.00)
+        };
 
         protected override Freezable CreateInstanceCore()
         {
@@ -25,7 +25,7 @@
 
         protected override double EaseInCore(double normalizedTime)
         {
-            return GetPointIter(this._controlPoints, normalizedTime).Y;
+            return GetPointIter(_controlPoints, normalizedTime).Y;
         }
 
         private static Point GetPointIter(ICollection<Point> points, double posX)
@@ -57,11 +57,6 @@
             var x = x1 + ((x2 - x1) * posX);
             var y = y1 + ((y2 - y1) * posX);
 
-            return CreateAdjustedPoint(x, y);
-        }
-
-        private static Point CreateAdjustedPoint(double x, double y)
-        {
             return new Point(x, y);
         }
     }

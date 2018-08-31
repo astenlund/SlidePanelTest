@@ -1,11 +1,11 @@
-﻿namespace SlidePanelTest.Converters
-{
-    using System;
-    using System.Globalization;
-    using System.Windows;
-    using System.Windows.Data;
-    using System.Windows.Markup;
+﻿using System;
+using System.Globalization;
+using System.Windows;
+using System.Windows.Data;
+using System.Windows.Markup;
 
+namespace SlidePanelTest.Converters
+{
     /// <summary>
     /// Converts a double value to a <see cref="GridLength"/> object.
     /// </summary>
