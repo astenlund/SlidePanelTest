@@ -1,0 +1,62 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:SlidePanelTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Class="SlidePanelTest.MainWindow"
+    x:Name="Window"
+    Title="MainWindow"
+    Width="640"
+    Height="640"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    >
+    
+    <Window.Resources>
+        <Style x:Key="LabelStyle" TargetType="Label">
+            <Setter Property="FontSize" Value="26" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style x:Key="ButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="MinWidth" Value="150" />
+            <Setter Property="Margin" Value="20" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot">
+        <StackPanel Orientation="Vertical"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    >
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Dismiss Count:" Style="{DynamicResource LabelStyle}" />
+                <Label Content="{Binding Counter}" Style="{DynamicResource LabelStyle}" />
+            </StackPanel>
+            <!-- Sending the Slide Panel instance as a Tag allows the handler to call its Show() method. -->
+            <Button x:Name="Button"
+                    Content="Some Button"
+                    Style="{DynamicResource ButtonStyle}"
+                    Click="Button_OnClick"
+                    Tag="{Binding ElementName=SlidePanel}"
+                    />
+        </StackPanel>
+        <!-- The Slide Panel is a Control like any other. Just make sure it's on top of the stuff it's supposed to hide. -->
+        <local:SlidePanel x:Name="SlidePanel"
+                          Width="{Binding ActualWidth, ElementName=LayoutRoot}"
+                          Height="{Binding ActualHeight, ElementName=LayoutRoot}"
+                          Dismissed="SlidePanel_OnDismissed"
+                          >
+            <!-- You can put any content you like in here -->
+            <Grid>
+                <Label Content="Some Fantastic Content" Style="{DynamicResource LabelStyle}" />
+            </Grid>
+        </local:SlidePanel>
+    </Grid>
+    
+</Window>
